@@ -1,27 +1,35 @@
-import product.Item;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class Meal {
-    List<Item> itemList = new ArrayList<>();
+    private List<Item> items;
+
+    public Meal() {
+        items = new ArrayList<>();
+    }
 
     public void addItem(Item item) {
-        if (item != null) {
-            itemList.add(item);
-        }
-
+        items.add(item);
     }
 
-    public void show(String mealType) {
-        System.out.println(mealType);
-        float totalPrice = 0;
-        for (Item item : itemList) {
-            System.out.println("Item: " + item.name() + ", Packing: " + item.packing() + ", Price: " + item.price());
-            totalPrice += item.price();
+    public float getCost() {
+        float cost = 0.0f;
+
+        for (Item item : items) {
+            cost += item.price();
         }
-        System.out.println("Total price: " + totalPrice);
-        System.out.println();
+
+        return cost;
     }
+
+    public void showItems() {
+        for (Item item : items) {
+//            System.out.print("Item: " + item.name());
+//            System.out.print("Packing: " + item.packing().pack());
+//            System.out.print("Price: " + item.price());
+            System.out.println("Item: " + item.name() + ", Packing: " + item.packing().pack() + ", Price: " + item.price());
+        }
+    }
+
 
 }

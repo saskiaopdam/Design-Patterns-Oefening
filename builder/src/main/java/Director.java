@@ -1,6 +1,8 @@
-public class Director {
+class Director {
+    MealBuilderInterface myBuilder;
 
-    public void construct(MealBuilder builder) {
+    public void construct(MealBuilderInterface builder) {
+        myBuilder = builder;
         builder.buildBurger();
         builder.buildDrink();
     }

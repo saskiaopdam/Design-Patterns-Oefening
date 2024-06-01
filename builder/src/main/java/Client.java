@@ -1,39 +1,24 @@
-import product.Coke;
-import product.Pepsi;
-
 public class Client {
     public static void main(String[] args) {
         Director director = new Director();
 
-        MealBuilder vegMealBuilder = new VegMealBuilder();
-        MealBuilder nonVegMealBuilder = new NonVegMealBuilder();
+        MealBuilderInterface vegMealBuilder = new VegMealBuilder();
+        MealBuilderInterface nonVegMealBuilder = new NonVegMealBuilder();
 
-        // For Veg item.Meal with item.Coke
-        vegMealBuilder.reset();  // Ensure to reset before using
-        vegMealBuilder.setDrink(new Coke());
+        // making veg meal
         director.construct(vegMealBuilder);
-        Meal vegMealWithCoke = vegMealBuilder.getMeal();
-        vegMealWithCoke.show("Veg meal with coke");
+        Meal vegMeal = vegMealBuilder.getMeal();
 
-        // For Veg item.Meal with item.Pepsi
-        vegMealBuilder.reset();  // Ensure to reset before using
-        vegMealBuilder.setDrink(new Pepsi());
-        director.construct(vegMealBuilder);
-        Meal vegMealWithPepsi = vegMealBuilder.getMeal();
-        vegMealWithPepsi.show("Veg meal with pepsi");
+        System.out.println("Veg Meal");
+        vegMeal.showItems();
+        System.out.println("Total Cost: " + vegMeal.getCost());
 
-        // For Non-Veg item.Meal with item.Coke
-        nonVegMealBuilder.reset();  // Ensure to reset before using
-        nonVegMealBuilder.setDrink(new Coke());
+        // making non-veg meal
         director.construct(nonVegMealBuilder);
-        Meal nonVegMealWithCoke = nonVegMealBuilder.getMeal();
-        nonVegMealWithCoke.show("Non-veg meal with coke");
+        Meal nonVegMeal = nonVegMealBuilder.getMeal();
 
-        // For Non-Veg item.Meal with item.Pepsi
-        nonVegMealBuilder.reset();  // Ensure to reset before using
-        nonVegMealBuilder.setDrink(new Pepsi());
-        director.construct(nonVegMealBuilder);
-        Meal nonVegMealWithPepsi = nonVegMealBuilder.getMeal();
-        nonVegMealWithPepsi.show("Non-veg meal with pepsi");
+        System.out.println("Non-Veg Meal");
+        nonVegMeal.showItems();
+        System.out.println("Total Cost: " + nonVegMeal.getCost());
     }
 }
